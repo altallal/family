@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة العائلة | الصرح التراثي والاجتماعي</title>
+
+  <!-- Google Fonts: Amiri for heritage titles & Cairo for sleek modern text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+            heritage: ['Amiri', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fbf8f2',
+              100: '#f5eee0',
+              200: '#ead8bf',
+              500: '#c29b38',
+              600: '#b08828',
+              700: '#8e6b1d',
+              800: '#6d5119',
+              900: '#382808',
+            },
+            parchment: '#fdfbf7',
+            navy: {
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#070b14',
+            }
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(50%)' }
+            }
+          },
+          animation: {
+            marquee: 'marquee 30s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c29b38;
+      border-radius: 4px;
+    }
+
+    /* Manuscript textured paper styling */
+    .manuscript-paper {
+      background-color: #faf5eb;
+      background-image: radial-gradient(#d6c29e 0.6px, transparent 0.6px), radial-gradient(#d6c29e 0.6px, #faf5eb 0.6px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+    }
+
+    /* Pause ticker on hover */
+    .ticker-wrapper:hover .ticker-content {
+      animation-play-state: paused;
+    }
+
+    /* Smooth transforms */
+    .img-zoom {
+      transition: transform 0.25s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+  <!-- 1. Header & Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 transition-shadow duration-300 shadow-sm" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo / Family Crest -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-500 to-amber-300 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-feather-pointed text-xl"></i>
+          </div>
+          <div>
+            <span class="block font-heritage text-2xl font-bold text-navy-900 tracking-tight leading-none group-hover:text-brand-700 transition-colors">بوابة العائلة</span>
+            <span class="text-xs font-semibold text-brand-600 tracking-wide">الصلة • التراث • المستقبل</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="#hero" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">الرئيسية</a>
+          <a href="#news" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">الأخبار</a>
+          <a href="#manuscripts" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">المخطوطات والوثائق</a>
+          <a href="#gallery" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">معرض المناسبات</a>
+          <a href="#tree" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">المشجر والتكريم</a>
+          <a href="#contact" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-700 hover:bg-stone-100 transition-colors">صندوق الذكريات</a>
+        </nav>
+
+        <!-- CTA & Mobile Trigger -->
+        <div class="flex items-center gap-3">
+          <button onclick="openModal('contributeModal')" class="hidden sm:inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-brand-100 text-sm font-bold px-4 py-2.5 rounded-xl transition shadow hover:shadow-md">
+            <i class="fa-solid fa-cloud-arrow-up text-brand-500"></i>
+            <span>إضافة مشاركة</span>
+          </button>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="menuBtn" class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-stone-100 focus:outline-none" aria-label="القائمة">
+            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-stone-200 bg-white px-4 pt-3 pb-6 space-y-1">
+      <a href="#hero" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">الرئيسية</a>
+      <a href="#news" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">الأخبار والمستجدات</a>
+      <a href="#manuscripts" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">المخطوطات والوثائق القديمة</a>
+      <a href="#gallery" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">معرض المناسبات</a>
+      <a href="#tree" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">مشجر العائلة ولوحة الشرف</a>
+      <a href="#contact" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700">صندوق الذكريات والمقترحات</a>
+      <div class="pt-2">
+        <button onclick="openModal('contributeModal'); closeMobileMenu();" class="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>إرسال وثيقة أو صورة عائلية</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Breaking News Ticker (الشريط الإخباري) -->
+  <section id="news" class="bg-navy-950 text-white border-b border-brand-700/40 py-2.5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 flex items-center gap-3">
+      <!-- Badge -->
+      <div class="flex items-center gap-2 bg-brand-600/90 text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-100"></span>
+        </span>
+        <span class="whitespace-nowrap">شريط الأخبار</span>
+      </div>
+
+      <!-- Marquee Flow -->
+      <div class="ticker-wrapper overflow-hidden relative w-full flex items-center select-none cursor-pointer" onclick="openModal('allNewsModal')">
+        <div class="ticker-content flex items-center gap-10 whitespace-nowrap text-sm text-slate-200 animate-marquee">
+          <span class="inline-flex items-center gap-2 hover:text-brand-300">
+            <i class="fa-solid fa-gem text-amber-400 text-xs"></i>
+            نبارك للمهندس خالد بن فهد بمناسبة تعيينه مديراً تنفيذياً ونتمنى له مزيداً من التوفيق.
+          </span>
+          <span class="inline-flex items-center gap-2 hover:text-brand-300">
+            <i class="fa-solid fa-calendar-check text-brand-500 text-xs"></i>
+            موعد اللقاء السنوي القادم للعائلة: الجمعة ١٥ شوال في ديوانية العائلة.
+          </span>
+          <span class="inline-flex items-center gap-2 hover:text-brand-300">
+            <i class="fa-solid fa-baby text-pink-400 text-xs"></i>
+            ألف مبروك للأخ سلطان قدوم المولودة الجديدة (سارة) جعلها الله من مواليد السعادة.
+          </span>
+          <span class="inline-flex items-center gap-2 hover:text-brand-300">
+            <i class="fa-solid fa-scroll text-amber-400 text-xs"></i>
+            تم توثيق وإضافة حجة شراء بستان النخيل المؤرخة سنة ١٣٤٢ هـ إلى ركن المخطوطات.
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick View All News Button -->
+      <button onclick="openModal('allNewsModal')" class="hidden sm:flex text-xs text-brand-300 hover:text-white shrink-0 items-center gap-1 underline underline-offset-4">
+        <span>عرض الكل</span>
+        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. Hero Section (الواجهة الرئيسية) -->
+  <section id="hero" class="relative bg-gradient-to-b from-stone-100 via-stone-50 to-white pt-16 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+    <!-- Subtle Background Ornament -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+      <i class="fa-solid fa-compass text-[500px] text-brand-900"></i>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Tag badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
+        <i class="fa-solid fa-mosque"></i>
+        <span>«وَأُولُو الأَرْحَامِ بَعْضُهُمْ أَوْلَىٰ بِبَعْضٍ فِي كِتَابِ اللَّهِ»</span>
+      </div>
+
+      <!-- Title & Intro -->
+      <h1 class="font-heritage text-4xl sm:text-6xl lg:text-7xl font-bold text-navy-900 leading-tight mb-6">
+        صرح العائلة التراثي والاجتماعي
+      </h1>
+      <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed mb-10 font-normal">
+        نافذة تجمع شمل الأجيال، تصون تاريخ الآباء والأجداد، وتوثق مسيرة الأبناء. هنا نحفظ وثائقنا ومخطوطاتنا النادرة، ونخلّد ذكريات لقاءاتنا ومناسباتنا العطرة.
+      </p>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#manuscripts" class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-700 text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg shadow-brand-600/20 hover:scale-[1.02] active:scale-95 transition">
+          <i class="fa-solid fa-scroll text-lg"></i>
+          <span>استكشاف المخطوطات</span>
+        </a>
+        <a href="#gallery" class="inline-flex items-center justify-center gap-3 bg-white hover:bg-stone-100 text-navy-900 font-bold px-7 py-3.5 rounded-2xl border border-stone-300 shadow-sm hover:scale-[1.02] active:scale-95 transition">
+          <i class="fa-regular fa-images text-lg text-brand-600"></i>
+          <span>ألبوم المناسبات</span>
+        </a>
+        <a href="#tree" class="inline-flex items-center justify-center gap-3 bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-3.5 rounded-2xl shadow-sm hover:scale-[1.02] active:scale-95 transition">
+          <i class="fa-solid fa-sitemap text-amber-400"></i>
+          <span>مشجر العائلة</span>
+        </a>
+      </div>
+
+      <!-- Quick Statistics Banner -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-4 border border-stone-200/80 shadow-sm">
+          <span class="block font-heritage text-3xl font-bold text-brand-700">+١٤٠</span>
+          <span class="text-xs font-semibold text-slate-500">عاماً من التاريخ الموثق</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-4 border border-stone-200/80 shadow-sm">
+          <span class="block font-heritage text-3xl font-bold text-navy-900">٣٨</span>
+          <span class="text-xs font-semibold text-slate-500">مخطوطة ووثيقة أصلية</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-4 border border-stone-200/80 shadow-sm">
+          <span class="block font-heritage text-3xl font-bold text-brand-700">+٦٥٠</span>
+          <span class="text-xs font-semibold text-slate-500">صورة مناسبات ولقاءات</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-4 border border-stone-200/80 shadow-sm">
+          <span class="block font-heritage text-3xl font-bold text-navy-900">٥</span>
+          <span class="text-xs font-semibold text-slate-500">أجيال متوارثة</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Heritage & Manuscripts Corner (ركن المخطوطات والوثائق القديمة) -->
+  <section id="manuscripts" class="py-20 bg-stone-100/70 border-t border-stone-200 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-brand-700 font-bold text-sm mb-2">
+            <i class="fa-solid fa-feather"></i>
+            <span>كنوز الأجداد والتاريخ الحي</span>
+          </div>
+          <h2 class="font-heritage text-3xl sm:text-4xl font-bold text-navy-900">ركن المخطوطات والوثائق القديمة</h2>
+          <p class="text-slate-600 mt-2 max-w-xl text-sm sm:text-base">
+            وثائق تاريخية نادرة، حجج أوقاف، ورسائل خطية بخطوط الرقعة والنسخ القديم، مرفقة بخاصية التكبير والتفريغ النصي الميسر.
+          </p>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-stone-500 bg-stone-200/80 px-3 py-1.5 rounded-lg">
+            <i class="fa-solid fa-magnifying-glass-plus text-brand-700 ml-1"></i> اضغط لتكبير المخطوط وقراءة التفريغ
+          </span>
+        </div>
+      </div>
+
+      <!-- Manuscripts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="manuscriptsContainer">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Occasions Photo Gallery (معرض صور المناسبات) -->
+  <section id="gallery" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-brand-600 font-bold text-sm tracking-wider block mb-2">لحظات لا تُنسى</span>
+        <h2 class="font-heritage text-3xl sm:text-4xl font-bold text-navy-900 mb-3">معرض صور المناسبات العائلية</h2>
+        <p class="text-slate-600 text-sm sm:text-base">تصفح صور الأعياد واللقاءات السنوية والمخيمات والرحلات في سجل مرئي جامع.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="galleryFilters">
+        <button onclick="filterGallery('all', this)" class="gallery-tab active px-5 py-2.5 rounded-xl text-sm font-bold bg-brand-600 text-white shadow-sm transition">الكل</button>
+        <button onclick="filterGallery('eid', this)" class="gallery-tab px-5 py-2.5 rounded-xl text-sm font-bold bg-stone-100 text-slate-700 hover:bg-stone-200 transition">اجتماعات الأعياد</button>
+        <button onclick="filterGallery('annual', this)" class="gallery-tab px-5 py-2.5 rounded-xl text-sm font-bold bg-stone-100 text-slate-700 hover:bg-stone-200 transition">اللقاء السنوي</button>
+        <button onclick="filterGallery('trips', this)" class="gallery-tab px-5 py-2.5 rounded-xl text-sm font-bold bg-stone-100 text-slate-700 hover:bg-stone-200 transition">الرحلات والمخيمات</button>
+      </div>
+
+      <!-- Photo Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="photosContainer">
+        <!-- Photos injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Family Tree & Honor Board Section (مشجر العائلة ولوحة التكريم) -->
+  <section id="tree" class="py-20 bg-stone-50 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Interactive Tree Teaser -->
+        <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-stone-200 shadow-sm relative overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">سلسلة الأنساب</span>
+              <h3 class="font-heritage text-2xl sm:text-3xl font-bold text-navy-900 mt-1">مشجر وفروع العائلة</h3>
+            </div>
+            <span class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
+              <i class="fa-solid fa-network-wired"></i>
+            </span>
+          </div>
+
+          <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+            استعراض شجري يبدأ من الجد المؤسس ويتفرع حتى الأبناء والأحفاد مع نبذة تعريفية لكل فرع ورقم تواصلي لمقرر كل فخذ.
+          </p>
+
+          <!-- Interactive Tree Diagram Mini-Preview -->
+          <div class="bg-stone-100/70 p-5 rounded-2xl border border-stone-200 text-center space-y-3">
+            <div class="inline-block bg-brand-800 text-amber-200 font-heritage font-bold px-6 py-2.5 rounded-xl shadow text-base">
+              الجد المؤسس (رحمه الله)
+            </div>
+            <div class="w-0.5 h-6 bg-brand-500 mx-auto"></div>
+            
+            <div class="grid grid-cols-3 gap-2">
+              <div class="bg-white p-2.5 rounded-xl border border-stone-200 text-xs font-bold text-slate-700 shadow-xs">
+                الفرع الأول: فرع إبراهيم
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-stone-200 text-xs font-bold text-slate-700 shadow-xs">
+                الفرع الثاني: فرع صالح
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-stone-200 text-xs font-bold text-slate-700 shadow-xs">
+                الفرع الثالث: فرع سليمان
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <span class="text-xs text-slate-500"><i class="fa-regular fa-clock ml-1"></i> آخر تحديث للمشجر: شهر رجب الماضي</span>
+            <button onclick="openModal('treeModal')" class="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition">
+              <i class="fa-solid fa-expand"></i>
+              <span>استعراض المشجر المفصل</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Honor Board (لوحة الشرف والتفوق) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-brand-900 to-navy-950 p-7 sm:p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
+          <div class="absolute -bottom-10 -left-10 text-brand-500/10 text-9xl">
+            <i class="fa-solid fa-award"></i>
+          </div>
+
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 text-xs font-bold px-3 py-1 rounded-full mb-4">
+              <i class="fa-solid fa-star text-amber-400"></i>
+              <span>فخر واعتزاز</span>
+            </div>
+            <h3 class="font-heritage text-2xl sm:text-3xl font-bold mb-3">لوحة الشرف والإنجاز</h3>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+              نحتفي بأبنائنا وبناتنا المتفوقين في شتى مجالات العلم وحفظ كتاب الله والتميز المهني.
+            </p>
+
+            <div class="space-y-3">
+              <!-- Item 1 -->
+              <div class="bg-white/10 backdrop-blur rounded-xl p-3.5 flex items-center justify-between border border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-amber-400 text-navy-900 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold">د. مروان بن عبدالله</h4>
+                    <p class="text-xs text-slate-300">درجة الدكتوراه في الذكاء الاصطناعي</p>
+                  </div>
+                </div>
+                <span class="text-xs bg-brand-600/60 px-2 py-1 rounded text-amber-200">١٤٤٥ هـ</span>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="bg-white/10 backdrop-blur rounded-xl p-3.5 flex items-center justify-between border border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-emerald-400 text-navy-900 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-book-quran"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold">عمر بن عبدالمحسن</h4>
+                    <p class="text-xs text-slate-300">إتمام حفظ القرآن الكريم كاملاً</p>
+                  </div>
+                </div>
+                <span class="text-xs bg-brand-600/60 px-2 py-1 rounded text-amber-200">١٤٤٥ هـ</span>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="bg-white/10 backdrop-blur rounded-xl p-3.5 flex items-center justify-between border border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-blue-400 text-navy-900 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-trophy"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold">نورة بنت فيصل</h4>
+                    <p class="text-xs text-slate-300">المركز الأول في الأولمبياد الوطني للرياضيات</p>
+                  </div>
+                </div>
+                <span class="text-xs bg-brand-600/60 px-2 py-1 rounded text-amber-200">١٤٤٦ هـ</span>
+              </div>
+            </div>
+
+            <div class="mt-6 text-center">
+              <button onclick="openModal('contributeModal')" class="text-xs text-brand-300 hover:text-white underline underline-offset-4">
+                هل لديك إنجاز أو شهادة لتكريم أحد أفراد الأسرة؟ اضغط هنا
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Contribute / Memories Box Section (صندوق الذكريات والمقترحات) -->
+  <section id="contact" class="py-20 bg-white border-t border-stone-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="bg-stone-50 border border-stone-200 rounded-3xl p-6 sm:p-10 shadow-sm">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="fa-solid fa-box-archive"></i>
+          </span>
+          <h2 class="font-heritage text-3xl font-bold text-navy-900 mb-2">صندوق الذكريات والمشاركات العائلية</h2>
+          <p class="text-slate-600 text-sm">
+            نرحب بمشاركاتكم! هل تملك صورة قديمة من لقاءات العائلة؟ وثيقة أو مخطوطة تاريخية؟ أو اقتراحاً لتطوير أعمال العائلة؟ أرسلها لنا لتخليدها في البوابة.
+          </p>
+        </div>
+
+        <form id="submissionForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الثلاثي <span class="text-red-500">*</span></label>
+              <input type="text" required placeholder="مثال: محمد بن فهد بن إبراهيم" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 outline-none text-sm transition">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">رقم الجوال (للتواصل عند الحاجة)</label>
+              <input type="tel" dir="ltr" placeholder="05xxxxxxxx" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 outline-none text-sm text-right transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">نوع المشاركة <span class="text-red-500">*</span></label>
+              <select required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 outline-none text-sm bg-white transition">
+                <option value="photo">صورة مناسبة أو اجتماع قديم</option>
+                <option value="manuscript">مخطوطة أو وثيقة تاريخية</option>
+                <option value="news">خبر أو تهنئة عائلية</option>
+                <option value="honor">إنجاز دراسي أو تكريم</option>
+                <option value="suggestion">اقتراح عام للموقع أو الصندوق</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">التاريخ التقريبي للوثيقة / المناسبة</label>
+              <input type="text" placeholder="مثال: عيد ١٤١٥ هـ أو عام ١٣٥٠ هـ" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 outline-none text-sm transition">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">تفاصيل المشاركة أو الملاحظات <span class="text-red-500">*</span></label>
+            <textarea required rows="4" placeholder="اذكر أسماء الأشخاص الموجودين في الصورة أو تفاصيل الوثيقة..." class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 outline-none text-sm transition"></textarea>
+          </div>
+
+          <!-- Mock Attachment Field -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">إرفاق الملف / الصورة</label>
+            <div class="border-2 border-dashed border-stone-300 rounded-2xl p-6 text-center hover:bg-stone-100/60 cursor-pointer transition">
+              <i class="fa-solid fa-cloud-arrow-up text-3xl text-stone-400 mb-2"></i>
+              <p class="text-xs text-slate-600 font-semibold">اسحب الملف هنا أو انقر للتحديد من هاتفك/جهازك</p>
+              <p class="text-[11px] text-slate-400 mt-1">يدعم الصور والمستندات (PNG, JPG, PDF)</p>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>إرسال المشاركة للجنة العائلة</span>
+          </button>
+        </form>
+
+        <!-- Notification Message inside form -->
+        <div id="formSuccessMessage" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-3">
+          <i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i>
+          <span>شكراً لك! تم استلام مشاركتك بنجاح، وستتم مراجعتها من قبل القائمين على أرشيف العائلة وإضافتها قريباً.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Footer (التذييل) -->
+  <footer class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-navy-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Col 1: Family identity -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
+            <span class="font-heritage text-2xl font-bold text-white">بوابة العائلة الرقمية</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+            صرح عائلي مستقل غير ربحي، يهدف إلى تعزيز أواصر صلة الرحم وتخليد إرث الآباء والأجداد وتقديم خدمات توثيقية واجتماعية لكافة أفراد العائلة داخل الوطن وخارجه.
+          </p>
+          <div class="flex items-center gap-3 pt-2 text-stone-400">
+            <span class="text-xs bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
+              <i class="fa-solid fa-shield-halved text-brand-500 ml-1"></i> أرشيف رقمي آمن
+            </span>
+            <span class="text-xs bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
+              <i class="fa-solid fa-heart text-red-500 ml-1"></i> صلة رحم وتراحم
+            </span>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="text-white font-bold text-base mb-4 font-heritage border-r-2 border-brand-500 pr-2">أقسام البوابة</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#hero" class="hover:text-brand-400 transition">الواجهة الرئيسية</a></li>
+            <li><a href="#manuscripts" class="hover:text-brand-400 transition">ركن المخطوطات والوثائق</a></li>
+            <li><a href="#gallery" class="hover:text-brand-400 transition">معرض الصور والمناسبات</a></li>
+            <li><a href="#tree" class="hover:text-brand-400 transition">المشجر ولوحة التكريم</a></li>
+            <li><a href="#contact" class="hover:text-brand-400 transition">إرسال وثيقة أو صورة</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Communication & Support -->
+        <div>
+          <h4 class="text-white font-bold text-base mb-4 font-heritage border-r-2 border-brand-500 pr-2">تواصل مع إدارة الصرح</h4>
+          <p class="text-xs text-slate-400 mb-3">للتعاون أو تصحيح معلومة في المشجر التاريخي أو إرسال وثائق نادرة:</p>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-envelope text-brand-500"></i>
+              <span>archive@family-portal.org</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i>
+              <span dir="ltr">+966 50 000 0000</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-amber-500"></i>
+              <span>ديوانية العائلة - المملكة العربية السعودية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 جميع الحقوق محفوظة لعائلة ومجلس الأمناء.</p>
+        <p class="text-slate-400 font-semibold bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
+          برمجة وتصميم : <span class="text-brand-400">عبدالرحمن بن عبدالعزيز التلال</span>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS & LIGHTBOXES ==================== -->
+
+  <!-- A. MANUSCRIPT VIEWER MODAL (التكبير والتفريغ النصي) -->
+  <div id="manuscriptModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm overflow-y-auto p-4 sm:p-6 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-5xl w-full overflow-hidden shadow-2xl border border-stone-200 animate-fadeIn my-auto">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-6 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+        <div>
+          <span class="text-xs font-bold text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full" id="modalDocEra">عام ١٣٣٥ هـ</span>
+          <h3 class="font-heritage text-2xl font-bold text-navy-900 mt-2" id="modalDocTitle">عنوان المخطوطة</h3>
+        </div>
+        <button onclick="closeModal('manuscriptModal')" class="w-10 h-10 rounded-full bg-stone-200 hover:bg-stone-300 text-slate-700 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Two columns: Image with Zoom + Transcription) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[75vh] overflow-y-auto">
+        
+        <!-- Left / Top: Interactive Zoom Canvas Container -->
+        <div class="lg:col-span-7 bg-stone-900 p-4 flex flex-col items-center justify-center relative select-none min-h-[350px]">
+          <!-- Zoom Controls Floating Bar -->
+          <div class="absolute top-4 left-4 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur text-white px-3 py-1.5 rounded-xl text-xs">
+            <button onclick="adjustZoom(0.2)" class="p-1.5 hover:text-brand-400 transition" title="تكبير"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button onclick="adjustZoom(-0.2)" class="p-1.5 hover:text-brand-400 transition" title="تصغير"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button onclick="resetZoom()" class="p-1.5 hover:text-brand-400 transition" title="إعادة الضبط"><i class="fa-solid fa-rotate-right"></i></button>
+            <span class="text-[10px] text-slate-400 mr-2" id="zoomPercentage">100%</span>
+          </div>
+
+          <div class="w-full h-full overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing">
+            <img id="modalDocImg" src="" alt="المخطوطة" class="img-zoom max-w-full max-h-[60vh] object-contain rounded shadow-lg">
+          </div>
+          <span class="text-[11px] text-slate-400 mt-2">استخدم أزرار التكبير بأعلى الصورة لفحص الخطوط والأختام الدقيقة</span>
+        </div>
+
+        <!-- Right / Bottom: Detailed Metadata & Arabic Transcription (التفريغ النصي) -->
+        <div class="lg:col-span-5 p-6 bg-parchment overflow-y-auto space-y-6">
+          
+          <!-- Document Metadata Tags -->
+          <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-2xl text-xs space-y-2 text-slate-700">
+            <div class="flex justify-between">
+              <span class="font-bold text-brand-900">نوع الوثيقة:</span>
+              <span id="modalDocType">حجة وقف شرعية</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="font-bold text-brand-900">الكاتب والشهود:</span>
+              <span id="modalDocScribe">الشيخ عبدالعزيز القاضي</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="font-bold text-brand-900">مصدر الوثيقة الأصلي:</span>
+              <span id="modalDocOwner">أرشيف فرع الرياض</span>
+            </div>
+          </div>
+
+          <!-- The Transcription (التفريغ النصي) -->
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-align-right text-brand-700"></i>
+              <h4 class="font-heritage text-lg font-bold text-navy-900">التفريغ النصي الكامل للوثيقة:</h4>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">نص منسوخ لتسهيل قراءة الكلمات القديمة والخطوط المتشابكة:</p>
+
+            <div id="modalDocTranscription" class="manuscript-paper p-5 rounded-2xl border border-amber-200 font-heritage text-slate-800 text-base leading-loose whitespace-pre-line shadow-inner max-h-[300px] overflow-y-auto">
+              <!-- Dynamic Transcription Text -->
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between text-xs text-slate-500">
+            <span><i class="fa-regular fa-circle-check text-emerald-600 ml-1"></i> وثيقة مدققة ومراجعة</span>
+            <button onclick="copyTranscription()" class="text-brand-700 hover:text-brand-900 font-bold flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i>
+              <span id="copyBtnText">نسخ النص المقروء</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- B. PHOTO GALLERY LIGHTBOX MODAL -->
+  <div id="galleryModal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 select-none">
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between text-white z-10">
+      <div>
+        <h4 id="galleryModalTitle" class="font-heritage text-xl font-bold">عنوان الصورة</h4>
+        <p id="galleryModalDate" class="text-xs text-slate-400">المناسبة</p>
+      </div>
+      <button onclick="closeModal('galleryModal')" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Center Photo with Prev/Next buttons -->
+    <div class="relative flex items-center justify-center flex-1 my-4">
+      <button onclick="changePhoto(-1)" class="absolute right-2 sm:right-6 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition" aria-label="السابق">
+        <i class="fa-solid fa-chevron-right text-lg"></i>
+      </button>
+
+      <img id="galleryModalImg" src="" alt="صورة المناسبة" class="max-h-[75vh] max-w-full object-contain rounded-2xl shadow-2xl transition-opacity duration-300">
+
+      <button onclick="changePhoto(1)" class="absolute left-2 sm:left-6 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition" aria-label="التالي">
+        <i class="fa-solid fa-chevron-left text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Bottom Caption -->
+    <div class="text-center text-slate-300 text-sm max-w-xl mx-auto" id="galleryModalDesc">
+      وصف الصورة ومكان الالتقاط
+    </div>
+  </div>
+
+  <!-- C. DETAILED FAMILY TREE MODAL -->
+  <div id="treeModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 sm:p-8 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-stone-200 mb-6">
+        <div>
+          <h3 class="font-heritage text-2xl font-bold text-navy-900">مشجر العائلة والأفرع الرئيسية</h3>
+          <p class="text-xs text-slate-500">مخطط توضيحي للأصول وفروع العائلة</p>
+        </div>
+        <button onclick="closeModal('treeModal')" class="w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-slate-700 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Tree Nodes Content -->
+      <div class="space-y-6 text-center">
+        <!-- Root -->
+        <div class="inline-block bg-navy-950 text-amber-300 font-heritage font-bold px-8 py-3 rounded-2xl shadow-lg border border-brand-500 text-lg">
+          الجد المؤسس رحمه الله (توفي ١٣١٥ هـ)
+        </div>
+
+        <div class="w-1 h-8 bg-brand-500 mx-auto"></div>
+
+        <!-- 1st Generation Branches -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="bg-stone-50 border border-stone-200 p-5 rounded-2xl text-right">
+            <span class="block font-heritage font-bold text-brand-800 text-lg mb-2">فرع: إبراهيم</span>
+            <p class="text-xs text-slate-600 mb-3">أبناؤه: عبدالله، فهد، محمد، حصة، نورة</p>
+            <div class="text-[11px] text-slate-500 bg-white p-2 rounded-lg border border-stone-100">
+              مقرر الفرع: عبدالإله بن عبدالله
+            </div>
+          </div>
+
+          <div class="bg-stone-50 border border-stone-200 p-5 rounded-2xl text-right">
+            <span class="block font-heritage font-bold text-brand-800 text-lg mb-2">فرع: صالح</span>
+            <p class="text-xs text-slate-600 mb-3">أبناؤه: عبدالعزيز، أحمد، خالد، منيرة</p>
+            <div class="text-[11px] text-slate-500 bg-white p-2 rounded-lg border border-stone-100">
+              مقرر الفرع: فهد بن عبدالعزيز
+            </div>
+          </div>
+
+          <div class="bg-stone-50 border border-stone-200 p-5 rounded-2xl text-right">
+            <span class="block font-heritage font-bold text-brand-800 text-lg mb-2">فرع: سليمان</span>
+            <p class="text-xs text-slate-600 mb-3">أبناؤه: ناصر، ماجد، منصور، لولوة</p>
+            <div class="text-[11px] text-slate-500 bg-white p-2 rounded-lg border border-stone-100">
+              مقرر الفرع: فيصل بن ناصر
+            </div>
+          </div>
+
+        </div>
+
+        <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900 text-right">
+          <i class="fa-solid fa-circle-info ml-1"></i>
+          للحصول على نسخة الـ PDF عالية الدقة ومطبوعة بجودة عالية لكامل المشجر الممتد على ٦ أمتار، يرجى التواصل مع مقرر لجنة الأنساب عبر نموذج التواصل أدناه.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D. ALL NEWS MODAL (نافذة الأرشيف الإخباري) -->
+  <div id="allNewsModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 sm:p-6 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-stone-200 mb-4">
+        <h3 class="font-heritage text-2xl font-bold text-navy-900">سجل الأخبار والمستجدات العائلية</h3>
+        <button onclick="closeModal('allNewsModal')" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-slate-700 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3" id="allNewsList">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- E. GENERIC QUICK CONTRIBUTE MODAL -->
+  <div id="contributeModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-heritage text-xl font-bold text-navy-900">إرسال مشاركة سريعة</h3>
+        <button onclick="closeModal('contributeModal')" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-slate-700 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="text-xs text-slate-600 mb-4">
+        يمكنك نقل مشاركتك فوراً عبر نموذج "صندوق الذكريات" المخصص بأسفل الصفحة، أو التواصل مباشرة مع منسق الموقع.
+      </p>
+      <div class="flex gap-2">
+        <a href="#contact" onclick="closeModal('contributeModal')" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-center py-2.5 rounded-xl text-xs font-bold transition">
+          الانتقال إلى نموذج الإرسال
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    /* ----------------------------------------------------
+       1. DATA ARRAYS: Manuscripts, Gallery Photos, and News
+    -----------------------------------------------------*/
+
+    // Manuscripts Data
+    const manuscriptsData = [
+      {
+        id: 'doc-1',
+        title: 'حجة شراء بستان النخيل والوقف',
+        dateHijri: 'عام ١٣٢٨ هـ',
+        era: 'أوائل القرن الرابع عشر الهجري',
+        type: 'حجة شراء ووقف خيري',
+        scribe: 'الشيخ عبدالرحمن بن صالح (كاتب العدل آنذاك)',
+        owner: 'أرشيف العائلة - خزانة الوثائق المركزية',
+        summary: 'وثيقة تملك لبستان النخيل ووقف ثلث ريعه لإفطار الصائمين وطلبة العلم بالبلدة القديمة.',
+        imgUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop',
+        transcription: `بسم الله الرحمن الرحيم
+الحمد لله وحده، وبعد:
+قد ثبت وتحقق لدي أنا الكاتب أسفله أن الفاضل المكرم قد اشترى من ماله الخاص البستان المسمى "الوسيطى" بكافة حدوده الأربعة وحقوقه ومائه، وجعل ثلث غلته وقفاً ناجزاً لله تعالى لا يباع ولا يوهب حتى يرث الله الأرض ومن عليها، يصرف على الفقراء والمساكين وإفطار الصائمين في مسجد البلدة.
+وقد شهد على ذلك الثقات الأخيار وحرر في شهر ربيع الأول من سنة ١٣٢٨ من الهجرة النبوية.
+ختم الكاتب والشهود: [ممهور بالأختام القديمة]`
+      },
+      {
+        id: 'doc-2',
+        title: 'رسالة ودية وتجارة متبادلة',
+        dateHijri: 'عام ١٣٥٢ هـ',
+        era: 'عهد التأسيس',
+        type: 'مراسلة خطية تاريخية',
+        scribe: 'الجد الأكبر رحمه الله بخط يده',
+        owner: 'محفوظة لدى فرع مكة المكرمة',
+        summary: 'رسالة مكتوبة بخط الرقعة تطمئن على سلامة القافلة التجارية وتوصي بصلة الأرحام وتفقد الأرامل والمحتاجين.',
+        imgUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000&auto=format&fit=crop',
+        transcription: `إلى جناب الأخ العزيز المحترم، حفظه الله ورعاه وأسبغ عليه نعمه.
+السلام عليكم ورحمة الله وبركاته، ومغفرته ومرضاته.
+بعد إهداء وافر التحية والاشتياق إليكم وإلى كافة الأهل والولد، نحمد الله إليكم أننا في خير وعافية وسرور، ونفيدكم بأن القافلة قد وصلت بسلامة الله وأمانه وحُمّلت البضائع بما يسر الخاطر.
+نوصيكم بتقوى الله في السر والعلانية، وتفقد ذوي الحاجة من أهلنا وقرابتنا، ولا تقطعوا عنا رسائلكم وأخباركم الطيبة. دمتم في حفظ الله ورعايته.
+في ٢٠ جمادى الأولى سنة ١٣٥٢ هـ.`
+      },
+      {
+        id: 'doc-3',
+        title: 'صك قسمة تركة وحصر أملاك',
+        dateHijri: 'عام ١٣٦٦ هـ',
+        era: 'منتصف القرن الهجري الماضي',
+        type: 'صك قسمة رضائية',
+        scribe: 'المحكمة الشرعية بالقصيم',
+        owner: 'أرشيف الوثائق التاريخية',
+        summary: 'قسمة تركة رضائية ومباركة بين الأبناء تشهد على التراحم والأخوة ونقاء الذمم بين أفراد الأسرة.',
+        imgUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop',
+        transcription: `الحمد لله، حضر الأخوان الكرام وجرت بينهم القسمة الرضائية لوجه الله تعالى دون شقاق ولا نزاع في الدور والمزارع المورثة عن والدهم، متحابين متآلفين على كتاب الله وسنة رسوله صلى الله عليه وسلم، داعين بالرحمة والمغفرة لمورثهم.
+وجرى إمضاء القسمة وتثبيتها بحضور الشهود العدول في مجلس القضاء الشرعي حرر في شهر ذي القعدة سنة ١٣٦٦ هجرية.`
+      }
+    ];
+
+    // Occasions Gallery Photos
+    const photosData = [
+      {
+        id: 1,
+        title: 'اجتماع عيد الفطر المبارك',
+        category: 'eid',
+        date: 'شوال ١٤٤٥ هـ',
+        desc: 'صورة جماعية في مجلس العائلة عقب صلاة العيد وتبادل التهاني والتبريكات.',
+        imgUrl: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop'
+      },
+      {
+        id: 2,
+        title: 'اللقاء العائلي السنوي',
+        category: 'annual',
+        date: 'ربيع الثاني ١٤٤٥ هـ',
+        desc: 'تكريم المتفوقين وكبار السن خلال الملتقى السنوي الرابع عشر.',
+        imgUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop'
+      },
+      {
+        id: 3,
+        title: 'مخيم الشتاء والربيع',
+        category: 'trips',
+        date: 'جمادى الأولى ١٤٤٥ هـ',
+        desc: 'رحلة الأبناء والشباب إلى البر وجلسة السمر المسائية التراثية.',
+        imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop'
+      },
+      {
+        id: 4,
+        title: 'معايدة عيد الأضحى',
+        category: 'eid',
+        date: 'ذو الحجة ١٤٤٤ هـ',
+        desc: 'الاجتماع حول مأدبة غداء العيد في مزرعة العائلة القديمة.',
+        imgUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop'
+      },
+      {
+        id: 5,
+        title: 'حفل تكريم المتقاعدين',
+        category: 'annual',
+        date: 'شعبان ١٤٤٤ هـ',
+        desc: 'وقفة وفاء وعرفان لرجالات العائلة الذين قدموا خدمات جليلة للوطن.',
+        imgUrl: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1000&auto=format&fit=crop'
+      },
+      {
+        id: 6,
+        title: 'رحلة شباب العائلة إلى العلا',
+        category: 'trips',
+        date: 'صفر ١٤٤٥ هـ',
+        desc: 'استكشاف معالم الوطن وتعزيز الصلة بين جيل الشباب والأحفاد.',
+        imgUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop'
+      }
+    ];
+
+    // News Archive
+    const newsData = [
+      {
+        date: 'منذ يومين',
+        category: 'ترقية وتكليف',
+        text: 'نبارك للمهندس خالد بن فهد بمناسبة تعيينه مديراً تنفيذياً ونتمنى له دوام الرقي والنجاح.'
+      },
+      {
+        date: 'منذ ٤ أيام',
+        category: 'مواليد',
+        text: 'ألف مبروك للأخ سلطان قدوم المولودة الجديدة (سارة) جعلها الله من مواليد السعادة والصلاح.'
+      },
+      {
+        date: 'منذ أسبوع',
+        category: 'مناسبة قادمة',
+        text: 'موعد اللقاء السنوي القادم للعائلة: الجمعة ١٥ شوال بعد صلاة المغرب في قاعة الديوانية.'
+      },
+      {
+        date: 'منذ أسبوعين',
+        category: 'توثيق وتراث',
+        text: 'تم بحمد الله الانتهاء من فهرسة وتفريغ الوثيقة رقم ٣٨ وإضافتها لخزانة المخطوطات الرقمية.'
+      }
+    ];
+
+    /* ----------------------------------------------------
+       2. INITIALIZATION & RENDERING
+    -----------------------------------------------------*/
+    let currentZoom = 1;
+    let currentPhotoIndex = 0;
+    let activeCategory = 'all';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderManuscripts();
+      renderGallery('all');
+      renderNewsModal();
+      setupMobileMenu();
+    });
+
+    // Render Manuscripts
+    function renderManuscripts() {
+      const container = document.getElementById('manuscriptsContainer');
+      if (!container) return;
+
+      container.innerHTML = manuscriptsData.map(doc => `
+        <div class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <!-- Image Box -->
+          <div class="relative h-56 overflow-hidden bg-stone-900 cursor-pointer" onclick="openManuscriptModal('${doc.id}')">
+            <img src="${doc.imgUrl}" alt="${doc.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-xs font-bold text-amber-300 bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg border border-amber-300/30">
+                <i class="fa-solid fa-scroll ml-1"></i> ${doc.dateHijri}
+              </span>
+            </div>
+            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur text-navy-900 text-xs font-bold px-2.5 py-1 rounded-lg shadow">
+              <i class="fa-solid fa-expand ml-1"></i> فحص المخطوط
+            </div>
+          </div>
+
+          <!-- Content Details -->
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-brand-600 mb-1.5 uppercase">${doc.type}</div>
+              <h3 class="font-heritage text-xl font-bold text-navy-900 mb-2 leading-snug group-hover:text-brand-700 transition">
+                ${doc.title}
+              </h3>
+              <p class="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4">
+                ${doc.summary}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+              <button onclick="openManuscriptModal('${doc.id}')" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-900">
+                <span>قراءة التفريغ النصي</span>
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+              </button>
+              <span class="text-[11px] text-slate-400 font-medium">${doc.era}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Gallery
+    function renderGallery(cat = 'all') {
+      const container = document.getElementById('photosContainer');
+      if (!container) return;
+
+      const filtered = cat === 'all' 
+        ? photosData 
+        : photosData.filter(p => p.category === cat);
+
+      container.innerHTML = filtered.map((photo) => {
+        const globalIndex = photosData.findIndex(item => item.id === photo.id);
+        return `
+          <div class="group relative rounded-2xl overflow-hidden bg-stone-900 aspect-square cursor-pointer shadow-sm hover:shadow-lg transition-all" onclick="openGalleryModal(${globalIndex})">
+            <img src="${photo.imgUrl}" alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+              <span class="text-[11px] text-amber-300 font-bold mb-1">${photo.date}</span>
+              <h4 class="font-heritage text-base font-bold leading-tight">${photo.title}</h4>
+              <p class="text-xs text-slate-300 line-clamp-1 mt-1">${photo.desc}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter Gallery Tabs
+    function filterGallery(category, btnElement) {
+      activeCategory = category;
+      document.querySelectorAll('.gallery-tab').forEach(b => {
+        b.classList.remove('bg-brand-600', 'text-white');
+        b.classList.add('bg-stone-100', 'text-slate-700');
+      });
+      btnElement.classList.remove('bg-stone-100', 'text-slate-700');
+      btnElement.classList.add('bg-brand-600', 'text-white');
+      renderGallery(category);
+    }
+
+    // Render All News Modal List
+    function renderNewsModal() {
+      const list = document.getElementById('allNewsList');
+      if (!list) return;
+
+      list.innerHTML = newsData.map(n => `
+        <div class="p-3.5 bg-stone-50 hover:bg-brand-50/50 rounded-xl border border-stone-200 transition">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-brand-700">${n.category}</span>
+            <span class="text-slate-400">${n.date}</span>
+          </div>
+          <p class="text-xs text-slate-800 leading-relaxed font-semibold">${n.text}</p>
+        </div>
+      `).join('');
+    }
+
+    /* ----------------------------------------------------
+       3. MODAL LOGIC & LIGHTBOX INTERACTIONS
+    -----------------------------------------------------*/
+
+    // Generic Modal Control
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+      ['manuscriptModal', 'galleryModal', 'treeModal', 'allNewsModal', 'contributeModal'].forEach(mId => {
+        const modal = document.getElementById(mId);
+        if (modal && e.target === modal) {
+          closeModal(mId);
+        }
+      });
+    });
+
+    // Close with Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ['manuscriptModal', 'galleryModal', 'treeModal', 'allNewsModal', 'contributeModal'].forEach(closeModal);
+      }
+    });
+
+    // Manuscript Lightbox Details & Zoom
+    function openManuscriptModal(docId) {
+      const doc = manuscriptsData.find(d => d.id === docId);
+      if (!doc) return;
+
+      document.getElementById('modalDocTitle').innerText = doc.title;
+      document.getElementById('modalDocEra').innerText = doc.dateHijri;
+      document.getElementById('modalDocType').innerText = doc.type;
+      document.getElementById('modalDocScribe').innerText = doc.scribe;
+      document.getElementById('modalDocOwner').innerText = doc.owner;
+      document.getElementById('modalDocTranscription').innerText = doc.transcription;
+
+      const img = document.getElementById('modalDocImg');
+      img.src = doc.imgUrl;
+
+      resetZoom();
+      openModal('manuscriptModal');
+    }
+
+    // Zoom Controls
+    function adjustZoom(delta) {
+      currentZoom = Math.min(Math.max(0.6, currentZoom + delta), 2.5);
+      applyZoom();
+    }
+
+    function resetZoom() {
+      currentZoom = 1;
+      applyZoom();
+    }
+
+    function applyZoom() {
+      const img = document.getElementById('modalDocImg');
+      const label = document.getElementById('zoomPercentage');
+      if (img) img.style.transform = `scale(${currentZoom})`;
+      if (label) label.innerText = `${Math.round(currentZoom * 100)}%`;
+    }
+
+    // Copy Transcription to Clipboard (using standard execCommand for iframe safety)
+    function copyTranscription() {
+      const text = document.getElementById('modalDocTranscription').innerText;
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        const btnText = document.getElementById('copyBtnText');
+        btnText.innerText = 'تم النسخ بنجاح!';
+        setTimeout(() => {
+          btnText.innerText = 'نسخ النص المقروء';
+        }, 2000);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // Gallery Lightbox Navigator
+    function openGalleryModal(index) {
+      currentPhotoIndex = index;
+      updateGalleryModal();
+      openModal('galleryModal');
+    }
+
+    function changePhoto(step) {
+      currentPhotoIndex += step;
+      if (currentPhotoIndex < 0) currentPhotoIndex = photosData.length - 1;
+      if (currentPhotoIndex >= photosData.length) currentPhotoIndex = 0;
+      updateGalleryModal();
+    }
+
+    function updateGalleryModal() {
+      const item = photosData[currentPhotoIndex];
+      if (!item) return;
+      document.getElementById('galleryModalTitle').innerText = item.title;
+      document.getElementById('galleryModalDate').innerText = item.date;
+      document.getElementById('galleryModalDesc').innerText = item.desc;
+      const img = document.getElementById('galleryModalImg');
+      img.style.opacity = '0.3';
+      setTimeout(() => {
+        img.src = item.imgUrl;
+        img.style.opacity = '1';
+      }, 150);
+    }
+
+    /* ----------------------------------------------------
+       4. MOBILE MENU & FORM SUBMIT
+    -----------------------------------------------------*/
+    function setupMobileMenu() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!menuBtn || !mobileMenu) return;
+
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+    }
+
+    // Form Handling Simulation
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const successBox = document.getElementById('formSuccessMessage');
+      if (successBox) {
+        successBox.classList.remove('hidden');
+        event.target.reset();
+        setTimeout(() => {
+          successBox.classList.add('hidden');
+        }, 6000);
+      }
+    }
+  </script>
+</body>
+</html>
